@@ -4,8 +4,14 @@ object knightRider {
 }
 
 object arenaAGranel{
-	var property peso = 0
+	var peso = 0
 	method nivelPeligrosidad(){ return 1 }
+	method peso(_peso){
+		peso = _peso
+	}
+	method peso(){
+		return peso
+	}
 }
 
 object bumblebee{
@@ -71,7 +77,7 @@ object residuosRadiactivos{
 
 object contenedorPortuario {
 	const pesoBase = 100
-	const cosasQueContiene = #{}
+	const property cosasQueContiene = #{}
 	method peso(){
 		return pesoBase + cosasQueContiene.sum({cadaCosa => cadaCosa.peso()})
 	}
@@ -80,11 +86,11 @@ object contenedorPortuario {
 			0
 		}
 		else {
-			cosasQueContiene.max({cosa => cosa.nivelPeligrosidad()})
+			self.cosaMasPeligrosa().nivelPeligrosidad()
 		}
 	}
-	method cosasQueContiene(cosas){
-		cosasQueContiene.add(cosas)
+	method cosaMasPeligrosa(){
+		return cosasQueContiene.max({cosa => cosa.nivelPeligrosidad()})
 	}
 }
 
