@@ -2,6 +2,7 @@ import cosas.*
 
 object camion {
 	const property cosas = #{}
+	const tara = 1000
 	
 	// comportamientos del camion
 	method cargar(unaCosa){
@@ -37,6 +38,14 @@ object camion {
 
 	method hayAlgunoQuePesa(peso){
 		return cosas.any({cosa => cosa.peso() == peso})
+	}
+
+	method pesoTotal(){
+		return tara + cosas.sum({cosa => cosa.peso()})
+	}
+
+	method estaExcedidoDePeso(){
+		return self.pesoTotal() > 2500
 	}
 }
 
