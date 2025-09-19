@@ -23,5 +23,13 @@ describe "Ejemplos del camión y sus cosas"{
         assert.notThat(camion.tieneCargasPares())
     }
 
+    test "Hay alguno que pesa"{
+        camion.cargar(bumblebee)
+        camion.cargar(arenaAGranel)
+        arenaAGranel.peso(50)
+        assert.that(camion.hayAlgunoQuePesa(50))
+        assert.that(camion.hayAlgunoQuePesa(800))
+        assert.notThat(camion.hayAlgunoQuePesa(500))
+    }
 
 }

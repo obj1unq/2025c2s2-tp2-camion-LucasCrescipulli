@@ -34,5 +34,9 @@ object camion {
 	// tienen peso par
 		return cosas.all({cosa => cosa.peso() % 2 == 0})
 	}
+
+	method hayAlgunoQuePesa(peso){
+		return cosas.any({cosa => cosa.peso() == peso})
+	}
 }
 
