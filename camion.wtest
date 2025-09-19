@@ -66,7 +66,21 @@ describe "Ejemplos del camión y sus cosas"{
         assert.equals(#{bateriaAntiaerea}, camion.cosasMasPeligrosasQue(bumblebee))
         assert.equals(#{knightRider, bateriaAntiaerea}, camion.cosasConNivelDePeligrosidadMayorA(2))
         assert.equals(#{knightRider, bateriaAntiaerea}, camion.cosasMasPeligrosasQue(paqueteDeLadrillos))
-        assert.equals(#{}, camion.cosasConNivelDePeligrosidadMayorA(200))
-        assert.equals(#{}, camion.cosasMasPeligrosasQue(residuosRadiactivos))
+        assert.that(camion.cosasConNivelDePeligrosidadMayorA(200).isEmpty())
+        assert.that(camion.cosasMasPeligrosasQue(residuosRadiactivos).isEmpty())
     }
+
+    test "Puede circular en ruta"{
+        camion.cargar(bumblebee)
+        bumblebee.transformacion(auto)
+        paqueteDeLadrillos.cantidadDeLadrillos(300)
+        camion.cargar(paqueteDeLadrillos)
+        assert.that(camion.puedeCircularEnRutaConNivelMaximo(20))
+        paqueteDeLadrillos.cantidadDeLadrillos(400)
+        assert.notThat(camion.puedeCircularEnRutaConNivelMaximo(20))
+        paqueteDeLadrillos.cantidadDeLadrillos(300)
+        bumblebee.transformacion(robot)
+        assert.notThat(camion.puedeCircularEnRutaConNivelMaximo(20))
+    }
+
 }
