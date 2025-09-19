@@ -47,5 +47,9 @@ object camion {
 	method estaExcedidoDePeso(){
 		return self.pesoTotal() > 2500
 	}
+
+	method encontrarCosaPeligrosaDeNivel(nivelDePeligrosidad){
+		return cosas.find({cosa => cosa.nivelPeligrosidad() == nivelDePeligrosidad})
+	}
 }
 

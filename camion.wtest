@@ -41,4 +41,20 @@ describe "Ejemplos del camión y sus cosas"{
         assert.equals(2600, camion.pesoTotal())
         assert.that(camion.estaExcedidoDePeso())
     }
+
+    test "El de nivel de peligrosidad"{
+        bumblebee.transformacion(auto)
+        camion.cargar(bumblebee)
+        bateriaAntiaerea.tieneMisiles(false)
+        camion.cargar(bateriaAntiaerea)
+        camion.cargar(residuosRadiactivos)
+        assert.equals(bateriaAntiaerea, camion.encontrarCosaPeligrosaDeNivel(0))
+        assert.equals(bumblebee, camion.encontrarCosaPeligrosaDeNivel(15))
+        assert.equals(residuosRadiactivos, camion.encontrarCosaPeligrosaDeNivel(200))
+        assert.throwsException({ camion.encontrarCosaPeligrosaDeNivel(30) })
+        bumblebee.transformacion(robot)
+        assert.equals(bumblebee, camion.encontrarCosaPeligrosaDeNivel(30))
+        bateriaAntiaerea.tieneMisiles(true)
+        assert.equals(bateriaAntiaerea, camion.encontrarCosaPeligrosaDeNivel(100))
+    }
 }

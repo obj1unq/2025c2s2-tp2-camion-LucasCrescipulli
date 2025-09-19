@@ -9,10 +9,13 @@ object arenaAGranel{
 }
 
 object bumblebee{
-	const transformacion = auto
+	var transformacion = auto
 	method peso(){ return 800 }
 	method nivelPeligrosidad(){ 
 		return transformacion.nivelPeligrosidad()
+	}
+	method transformacion(_transformacion){
+		transformacion = _transformacion
 	}
 }
 
