@@ -39,12 +39,9 @@ object paqueteDeLadrillos{
 }
 
 object bateriaAntiaerea{
-	var carga = misiles
-	method carga(_carga){ 
-		carga = _carga
-	}
+	var property tieneMisiles = false
 	method peso(){
-		return if (carga == misiles){
+		return if (tieneMisiles){
 			300
 		}
 		else {
@@ -52,7 +49,7 @@ object bateriaAntiaerea{
 		}
 	}
 	method nivelPeligrosidad(){
-		return if (carga == misiles){
+		return if (tieneMisiles){
 			100
 		}
 		else {

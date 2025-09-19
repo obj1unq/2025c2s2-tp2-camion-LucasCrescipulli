@@ -1,0 +1,16 @@
+import camion.*
+import cosas.*
+
+describe "Ejemplos del camión y sus cosas"{
+
+    test "Primer ejemplo"{
+        camion.cargar(bumblebee)
+        assert.equals(camion.cosas(), #{bumblebee})
+        camion.cargar(knightRider)
+        assert.equals(camion.cosas(), #{bumblebee, knightRider})
+        camion.descargar(bumblebee)
+        assert.equals(camion.cosas(), #{knightRider})
+        assert.throwsException({ camion.cargar(knightRider) })
+        assert.throwsException({ camion.descargar(bumblebee) })
+    }
+}
