@@ -13,4 +13,15 @@ describe "Ejemplos del camión y sus cosas"{
         assert.throwsException({ camion.cargar(knightRider) })
         assert.throwsException({ camion.descargar(bumblebee) })
     }
+
+    test "Todo peso par"{
+        camion.cargar(bumblebee)
+        arenaAGranel.peso(50)
+        camion.cargar(arenaAGranel)
+        assert.that(camion.tieneCargasPares())
+        arenaAGranel.peso(51)
+        assert.notThat(camion.tieneCargasPares())
+    }
+
+
 }

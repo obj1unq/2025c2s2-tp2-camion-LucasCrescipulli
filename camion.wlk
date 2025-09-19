@@ -2,7 +2,8 @@ import cosas.*
 
 object camion {
 	const property cosas = #{}
-		
+	
+	// comportamientos del camion
 	method cargar(unaCosa){
 		self.verificarSiEstaCargada(unaCosa)
 		cosas.add(unaCosa)
@@ -26,4 +27,12 @@ object camion {
 			self.error(unaCosa + "ya está cargada en el camión")
 		}
 	}
+	
+	// consultas y booleanos
+	method tieneCargasPares(){
+	// Tengo que recorrer el set de cosas y determinar si todas
+	// tienen peso par
+		return cosas.all({cosa => cosa.peso() % 2 == 0})
+	}
 }
+
