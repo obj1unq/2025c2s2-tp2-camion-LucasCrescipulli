@@ -57,4 +57,15 @@ describe "Ejemplos del camión y sus cosas"{
         bateriaAntiaerea.tieneMisiles(true)
         assert.equals(bateriaAntiaerea, camion.encontrarCosaPeligrosaDeNivel(100))
     }
+
+    test "Cosas peligrosas"{
+        camion.cargar(knightRider)
+        bateriaAntiaerea.tieneMisiles(true)
+        camion.cargar(bateriaAntiaerea)
+        assert.equals(#{bateriaAntiaerea}, camion.cosasConNivelDePeligrosidadMayorA(15))
+        assert.equals(#{bateriaAntiaerea}, camion.cosasMasPeligrosasQue(bumblebee))
+        bateriaAntiaerea.tieneMisiles(false)
+        assert.equals(#{knightRider}, camion.cosasConNivelDePeligrosidadMayorA(2))
+        assert.equals(#{knightRider, bateriaAntiaerea}, camion.cosasMasPeligrosasQue(paqueteDeLadrillos))
+    }
 }

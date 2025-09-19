@@ -51,5 +51,12 @@ object camion {
 	method encontrarCosaPeligrosaDeNivel(nivelDePeligrosidad){
 		return cosas.find({cosa => cosa.nivelPeligrosidad() == nivelDePeligrosidad})
 	}
-}
 
+	method cosasConNivelDePeligrosidadMayorA(nivel){
+		return cosas.filter({cosa => cosa.nivelPeligrosidad() > nivel})
+	}
+
+	method cosasMasPeligrosasQue(cosaPeligrosa){
+		return self.cosasConNivelDePeligrosidadMayorA(cosaPeligrosa.nivelPeligrosidad())
+	}
+}
