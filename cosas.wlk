@@ -61,12 +61,40 @@ object bateriaAntiaerea{
 	}
 }
 
-object misiles{}
-
 object residuosRadiactivos{
 	var peso = 0
 	method peso(_peso){ 
 		peso = _peso 
 	}
 	method nivelPeligrosidad(){ return 200 }
+}
+
+object contenedorPortuario {
+	const pesoBase = 100
+	const cosasQueContiene = #{}
+	method peso(){
+		return pesoBase + cosasQueContiene.sum({cadaCosa => cadaCosa.peso()})
+	}
+	method nivelPeligrosidad(){
+		return if (cosasQueContiene.isEmpty()){
+			0
+		}
+		else {
+			cosasQueContiene.max({cosa => cosa.nivelPeligrosidad()})
+		}
+	}
+	method cosasQueContiene(cosas){
+		cosasQueContiene.add(cosas)
+	}
+}
+
+object embajaleDeSeguridad{
+	var cosaQueEnvuelve = paqueteDeLadrillos
+	method peso(){ return cosaQueEnvuelve.peso()}
+	method cosaQueEnvuelve(cosa){
+		cosaQueEnvuelve = cosa 
+	}
+	method nivelPeligrosidad(){
+		return cosaQueEnvuelve.nivelPeligrosidad() / 2
+	}
 }

@@ -83,4 +83,12 @@ describe "Ejemplos del camión y sus cosas"{
         assert.notThat(camion.puedeCircularEnRutaConNivelMaximo(20))
     }
 
+    test "Más cosas"{
+        assert.equals(100, contenedorPortuario.peso())
+        assert.equals(0, contenedorPortuario.nivelPeligrosidad())
+        arenaAGranel.peso(50)
+        contenedorPortuario.cosasQueContiene(#{knightRider, arenaAGranel})
+        assert.equals(650, contenedorPortuario.peso())
+        assert.equals(10, contenedorPortuario.nivelPeligrosidad())
+    }
 }
