@@ -1,7 +1,7 @@
 import cosas.*
 
 object camion {
-	const property cosas = #{}
+	var property cosas = #{}
 	const tara = 1000
 	
 	// comportamientos del camion
@@ -15,6 +15,16 @@ object camion {
 		cosas.remove(unaCosa)
 	}
 
+	method accidente(){
+		cosas.forEach({cadaCosa => cadaCosa.accidente()})
+	}
+
+	method transportar(destino, camino){
+		self.verificarCamino(camino)
+		destino.cosas().addAll(#{cosas})
+		cosas.clear()
+	}
+
 	// verificaciones
 	method verificarCarga(unaCosa){
 		if (not cosas.contains(unaCosa)){
@@ -26,6 +36,13 @@ object camion {
 	method verificarSiEstaCargada(unaCosa){
 		if (cosas.contains(unaCosa)){
 			self.error(unaCosa + "ya está cargada en el camión")
+		}
+	}
+
+	method verificarCamino(camino){
+		if (not self.puedeCircularEnRutaConNivelMaximo(camino.nivelMaximoPeligrosidad())
+			 || self.pesoTotal() > camino.pesoMaximoPermitido()){
+			self.error("No se puede realizar el transporte por el camino indicado")
 		}
 	}
 	
@@ -78,4 +95,18 @@ object camion {
 	method cantidadTotalDeBultos(){
 		return cosas.sum({cosa => cosa.cantidadDeBultos()})
 	}
+}
+
+object ruta9{
+	const property nivelMaximoPeligrosidad = 20
+	const property pesoMaximoPermitido = 99999999999 
+}
+
+object almacen{
+	var property cosas = #{}
+}
+
+object caminosVecinales{
+	const property nivelMaximoPeligrosidad = 99999999999
+	var property pesoMaximoPermitido = 2000
 }

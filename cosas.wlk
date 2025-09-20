@@ -4,6 +4,8 @@ object knightRider {
 	method cantidadDeBultos(){
 		return 1
 	}
+	method accidente(){
+	}
 }
 
 object arenaAGranel{
@@ -18,19 +20,27 @@ object arenaAGranel{
 	method cantidadDeBultos(){
 		return 1
 	}
+	method accidente(){
+		peso += 20
+	}
 }
 
 object bumblebee{
-	var transformacion = auto
+	var property transformacion = auto
 	method peso(){ return 800 }
 	method nivelPeligrosidad(){ 
 		return transformacion.nivelPeligrosidad()
 	}
-	method transformacion(_transformacion){
-		transformacion = _transformacion
-	}
 	method cantidadDeBultos(){
 		return 2
+	}
+	method accidente(){
+		if (transformacion == auto){
+			transformacion = robot
+		}
+		else{
+			transformacion = auto
+		}
 	}
 }
 
@@ -46,12 +56,9 @@ object robot{
 
 object paqueteDeLadrillos{
 	const pesoPorLadrillo = 2
-	var cantidadDeLadrillos = 0
+	var property cantidadDeLadrillos = 0
 	method peso(){
 		return pesoPorLadrillo * cantidadDeLadrillos
-	}
-	method cantidadDeLadrillos(cantidad){
-		cantidadDeLadrillos = cantidad
 	}
 	method nivelPeligrosidad(){ return 2 }
 	method cantidadDeBultos(){
@@ -63,6 +70,14 @@ object paqueteDeLadrillos{
 		}
 		else {
 			3
+		}
+	}
+	method accidente(){
+		if (cantidadDeLadrillos <= 12){
+			cantidadDeLadrillos = 0
+		}
+		else {
+			cantidadDeLadrillos -= 12
 		}
 	}
 }
@@ -93,16 +108,19 @@ object bateriaAntiaerea{
 			1
 		}
 	}
+	method accidente(){
+		tieneMisiles = false
+	}
 }
 
 object residuosRadiactivos{
-	var peso = 0
-	method peso(_peso){ 
-		peso = _peso 
-	}
+	var property peso = 0
 	method nivelPeligrosidad(){ return 200 }
 	method cantidadDeBultos(){
 		return 1
+	}
+	method accidente(){
+		peso += 15
 	}
 }
 
@@ -126,6 +144,9 @@ object contenedorPortuario {
 	method cantidadDeBultos(){
 		return 1 + cosasQueContiene.size()
 	}
+	method accidente(){
+		cosasQueContiene.forEach({cadaCosa => cadaCosa.accidente()})
+	}
 }
 
 object embajaleDeSeguridad{
@@ -139,5 +160,7 @@ object embajaleDeSeguridad{
 	}
 	method cantidadDeBultos(){
 		return 2
+	}
+	method accidente(){
 	}
 }
