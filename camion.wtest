@@ -100,4 +100,35 @@ describe "Ejemplos del camión y sus cosas"{
         assert.that(camion.tieneAlgoQuePesaEntre(5, 1000))
         assert.notThat(camion.tieneAlgoQuePesaEntre(900, 1000))
     }
+
+    test "Cosa más pesada y pesos"{
+        camion.cosas().addAll(#{bumblebee, paqueteDeLadrillos})
+        paqueteDeLadrillos.cantidadDeLadrillos(300)
+        assert.equals([800, 600], camion.todosLosPesos())
+        assert.equals(bumblebee, camion.cosaMasPesada())
+        camion.cosas().clear()
+        assert.throwsException({camion.cosaMasPesada()})                                                                                                                                                                                                                                                                                                                                   
+    }
+
+    test "TotalBultos"{
+        contenedorPortuario.cosasQueContiene().addAll(#{knightRider, bumblebee})
+        embajaleDeSeguridad.cosaQueEnvuelve(residuosRadiactivos)
+        paqueteDeLadrillos.cantidadDeLadrillos(50)
+        camion.cosas().addAll(#{embajaleDeSeguridad, arenaAGranel, paqueteDeLadrillos, 
+                                bateriaAntiaerea, contenedorPortuario, residuosRadiactivos})
+        assert.equals(9, camion.cantidadTotalDeBultos())
+    }
+
+    test "TotalBultos - caso 2"{
+        bateriaAntiaerea.tieneMisiles(true)
+        paqueteDeLadrillos.cantidadDeLadrillos(150)
+        camion.cosas().addAll(#{paqueteDeLadrillos, bateriaAntiaerea, contenedorPortuario})
+        assert.equals(5, camion.cantidadTotalDeBultos())
+    }
+
+    test "TotalBultos - caso 3"{
+        paqueteDeLadrillos.cantidadDeLadrillos(350)
+        camion.cosas().addAll(#{paqueteDeLadrillos, arenaAGranel})
+        assert.equals(4, camion.cantidadTotalDeBultos())
+    }
 }

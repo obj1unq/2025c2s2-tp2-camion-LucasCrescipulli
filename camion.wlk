@@ -31,8 +31,6 @@ object camion {
 	
 	// consultas y booleanos
 	method tieneCargasPares(){
-	// Tengo que recorrer el set de cosas y determinar si todas
-	// tienen peso par
 		return cosas.all({cosa => cosa.peso() % 2 == 0})
 	}
 
@@ -71,5 +69,13 @@ object camion {
 
 	method cosaMasPesada(){
 		return cosas.max({cosa => cosa.peso()})
+	}
+
+	method todosLosPesos(){
+		return cosas.map({cosa => cosa.peso()})
+	}
+
+	method cantidadTotalDeBultos(){
+		return cosas.sum({cosa => cosa.cantidadDeBultos()})
 	}
 }
