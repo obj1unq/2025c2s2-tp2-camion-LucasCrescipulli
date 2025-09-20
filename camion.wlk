@@ -21,7 +21,7 @@ object camion {
 
 	method transportar(destino, camino){
 		self.verificarCamino(camino)
-		destino.cosas().addAll(#{cosas})
+		destino.cosas().addAll(cosas)
 		cosas.clear()
 	}
 

@@ -35,7 +35,7 @@ object bumblebee{
 		return 2
 	}
 	method accidente(){
-		if (transformacion == auto){
+		if (transformacion == auto){ // no encuentro otra forma de hacerlo sin utilizar esa condición
 			transformacion = robot
 		}
 		else{
