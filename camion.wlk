@@ -64,4 +64,12 @@ object camion {
 		return not(self.estaExcedidoDePeso()) && 
 					self.cosasConNivelDePeligrosidadMayorA(nivel).isEmpty()
 	}
+
+	method tieneAlgoQuePesaEntre(primerValor, segundoValor){
+	 	return cosas.any({cosa => cosa.peso() >= primerValor and cosa.peso() <= segundoValor})
+	}
+
+	method cosaMasPesada(){
+		return cosas.max({cosa => cosa.peso()})
+	}
 }

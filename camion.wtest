@@ -91,4 +91,13 @@ describe "Ejemplos del camión y sus cosas"{
         assert.equals(650, contenedorPortuario.peso())
         assert.equals(10, contenedorPortuario.nivelPeligrosidad())
     }
+
+    test "Tiene algo que pesa entre dos valores"{
+        camion.cargar(bumblebee)
+        paqueteDeLadrillos.cantidadDeLadrillos(300)
+        camion.cargar(paqueteDeLadrillos)
+        assert.that(camion.tieneAlgoQuePesaEntre(5, 700))
+        assert.that(camion.tieneAlgoQuePesaEntre(5, 1000))
+        assert.notThat(camion.tieneAlgoQuePesaEntre(900, 1000))
+    }
 }
